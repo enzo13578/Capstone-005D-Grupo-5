@@ -1,0 +1,8 @@
+dentro del backlog , aquellas historias que son del sprint 1 y además el 2, son solo del 1, solo que están retrasadas, ya que tomamos el informe luego de terminar el sprint 1.
+
+el sprint 1 inicio el 22/09/24 y termino el 07/10/24
+
+REPOSITORIO DEL PROYECTO
+https://github.com/EveLyn507/ferias_chile
+
+Si hicimos mettings , pero no las documentamos.....

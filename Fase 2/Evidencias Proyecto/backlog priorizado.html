@@ -1,0 +1,1344 @@
+<html
+        xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<title>Jira</title>
+<style type="text/css">
+table {
+    mso-displayed-decimal-separator:"\,";
+    mso-displayed-thousand-separator:"\.";
+}
+body
+{
+    margin: 0px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color:black;
+}
+
+</style>
+<META HTTP-EQUIV="Content-Type" Content="application/vnd.ms-excel; charset=UTF-8">
+<!-- JRA-7598 - ensure fields (e.g. description) occupy only one cell - even fields containing newlines. -->
+<!--
+Vertical align all cells to the top, in order to align all issue rows of issuetable to the top,
+since Excel does not use or save the css files it is hardcoded here.
+-->
+<style>
+@page
+{
+mso-page-orientation:landscape;
+margin:.25in .25in .5in .25in;
+mso-header-margin:.5in;
+mso-footer-margin:.25in;
+mso-footer-data:"&R&P of &N";
+mso-horizontal-page-align:center;
+mso-vertical-page-align:center;
+}
+
+td.issuekey,
+td.issuetype,
+td.status {
+    mso-style-parent: "";
+    mso-number-format: \@;
+    text-align: left;
+}
+br
+{
+    mso-data-placement:same-cell;
+}
+
+td
+{
+    vertical-align: top;
+}
+</style>
+
+<!--[if gte mso 9]><xml>
+<x:ExcelWorkbook>
+<x:ExcelWorksheets>
+<x:ExcelWorksheet>
+<x:Name>general_report</x:Name>
+<x:WorksheetOptions>
+<x:Print>
+<x:ValidPrinterInfo/>
+</x:Print>
+</x:WorksheetOptions>
+</x:ExcelWorksheet>
+</x:ExcelWorksheets>
+</x:ExcelWorkbook>
+</xml><![endif]-->
+</head>
+<body>
+
+<table border="1">
+    <tr bgcolor="#205081" height="30">
+        <td colspan="6">
+            <img src="https://feriaschile.atlassian.net/images/icon-jira-family-logo.png" width="57" height="30" border="0" alt="Jira">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6">
+            <a href="https://feriaschile.atlassian.net/issues/?jql=project+%3D+%22SCRUM%22+AND+sprint+IN+%281%2C+69%2C+70%2C+2%2C+3%2C+empty%29+AND+type+%3D+Story+ORDER+BY+cf%5B10020%5D+ASC%2C+created+ASC">Jira</a>
+        </td>
+    </tr>
+    <tr>
+                <td colspan="6">
+            Mostrando <strong>93</strong> incidencias como en <strong>07/oct/24 11:23 PM</strong>.
+        </td>
+    </tr>
+</table>
+
+
+
+
+                                        <table id="issuetable" class="aui " border="1" cellpadding="3" cellspacing="1" width="100%">
+                        <thead>
+        <tr class="rowHeader">
+            
+                                                            <th class="colHeaderLink headerrow-issuetype" data-id="issuetype">
+                                                        Tipo de Incidencia
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-assignee" data-id="assignee">
+                                                        Persona asignada
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-status" data-id="status">
+                                                        Estado
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-created" data-id="created">
+                                                        Creada
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-updated" data-id="updated">
+                                                        Actualizada
+                                                    </th>
+                                                
+                                                            <th class="colHeaderLink headerrow-customfield_10020" data-id="customfield_10020">
+                                                        Sprint
+                                                    </th>
+                                                                    </tr>
+    </thead>
+    <tbody>
+                    
+
+                <tr id="issuerow10012" rel="10012" data-issuekey="SCRUM-13" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 12/sep/24 11:35 PM </td>
+                                            <td class="updated"> 07/oct/24 4:27 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10052" rel="10052" data-issuekey="SCRUM-21" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 15/sep/24 2:48 PM </td>
+                                            <td class="updated"> 07/oct/24 4:26 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10053" rel="10053" data-issuekey="SCRUM-22" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 15/sep/24 2:52 PM </td>
+                                            <td class="updated"> 07/oct/24 4:25 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10054" rel="10054" data-issuekey="SCRUM-23" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 15/sep/24 2:52 PM </td>
+                                            <td class="updated"> 07/oct/24 4:25 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10055" rel="10055" data-issuekey="SCRUM-24" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:52 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10056" rel="10056" data-issuekey="SCRUM-25" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:53 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10057" rel="10057" data-issuekey="SCRUM-26" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 15/sep/24 2:53 PM </td>
+                                            <td class="updated"> 07/oct/24 4:26 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10058" rel="10058" data-issuekey="SCRUM-27" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:53 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10059" rel="10059" data-issuekey="SCRUM-28" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 15/sep/24 2:53 PM </td>
+                                            <td class="updated"> 07/oct/24 4:21 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10062" rel="10062" data-issuekey="SCRUM-31" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:54 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10063" rel="10063" data-issuekey="SCRUM-32" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:54 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10065" rel="10065" data-issuekey="SCRUM-34" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:55 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10066" rel="10066" data-issuekey="SCRUM-35" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 15/sep/24 2:55 PM </td>
+                                            <td class="updated"> 07/oct/24 4:26 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10067" rel="10067" data-issuekey="SCRUM-36" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:55 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10068" rel="10068" data-issuekey="SCRUM-37" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:55 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10069" rel="10069" data-issuekey="SCRUM-38" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 2:56 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10070" rel="10070" data-issuekey="SCRUM-39" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 15/sep/24 2:56 PM </td>
+                                            <td class="updated"> 07/oct/24 4:26 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10071" rel="10071" data-issuekey="SCRUM-40" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 15/sep/24 2:56 PM </td>
+                                            <td class="updated"> 07/oct/24 4:27 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10074" rel="10074" data-issuekey="SCRUM-43" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 4:00 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10083" rel="10083" data-issuekey="SCRUM-52" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 4:02 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10086" rel="10086" data-issuekey="SCRUM-55" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            JEREMY . ZUNIGA SEPULVEDA
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 9:17 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10146" rel="10146" data-issuekey="SCRUM-83" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 20/sep/24 3:58 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10147" rel="10147" data-issuekey="SCRUM-84" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            JEREMY . ZUNIGA SEPULVEDA
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 20/sep/24 3:58 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10149" rel="10149" data-issuekey="SCRUM-86" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 20/sep/24 3:59 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10152" rel="10152" data-issuekey="SCRUM-89" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            JEREMY . ZUNIGA SEPULVEDA
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 20/sep/24 4:00 PM </td>
+                                            <td class="updated"> 07/oct/24 4:28 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10197" rel="10197" data-issuekey="SCRUM-102" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            JEREMY . ZUNIGA SEPULVEDA
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-green jira-issue-status-lozenge-done aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Finalizada&lt;/span&gt;">Finalizada</span>    </td>
+                                            <td class="created"> 22/sep/24 12:46 PM </td>
+                                            <td class="updated"> 07/oct/24 4:25 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1</td>
+                    </tr>
+
+
+                <tr id="issuerow10202" rel="10202" data-issuekey="SCRUM-107" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            JEREMY . ZUNIGA SEPULVEDA
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 22/sep/24 12:47 PM </td>
+                                            <td class="updated"> 07/oct/24 4:36 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 1, Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10073" rel="10073" data-issuekey="SCRUM-42" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 4:00 PM </td>
+                                            <td class="updated"> 07/oct/24 4:37 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10075" rel="10075" data-issuekey="SCRUM-44" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            JEREMY . ZUNIGA SEPULVEDA
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 4:00 PM </td>
+                                            <td class="updated"> 07/oct/24 4:34 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10095" rel="10095" data-issuekey="SCRUM-64" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            JEREMY . ZUNIGA SEPULVEDA
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 9:20 PM </td>
+                                            <td class="updated"> 07/oct/24 4:30 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10097" rel="10097" data-issuekey="SCRUM-66" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 9:20 PM </td>
+                                            <td class="updated"> 07/oct/24 4:32 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10098" rel="10098" data-issuekey="SCRUM-67" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 15/sep/24 9:20 PM </td>
+                                            <td class="updated"> 07/oct/24 4:33 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10141" rel="10141" data-issuekey="SCRUM-78" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 20/sep/24 3:53 PM </td>
+                                            <td class="updated"> 07/oct/24 4:33 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10148" rel="10148" data-issuekey="SCRUM-85" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            Enzo Diego Diaz Alvarez
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 20/sep/24 3:59 PM </td>
+                                            <td class="updated"> 07/oct/24 4:34 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10158" rel="10158" data-issuekey="SCRUM-95" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            MANASES ELIAS VERGARA RAIN
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 20/sep/24 7:35 PM </td>
+                                            <td class="updated"> 07/oct/24 4:33 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10200" rel="10200" data-issuekey="SCRUM-105" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">            JEREMY . ZUNIGA SEPULVEDA
+    </td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-yellow jira-issue-status-lozenge-indeterminate aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;En curso&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;jira-issue-status-tooltip-desc&quot;&gt;El responsable está trabajando actualmente en esta incidencia.&lt;/span&gt;">En curso</span>    </td>
+                                            <td class="created"> 22/sep/24 12:47 PM </td>
+                                            <td class="updated"> 07/oct/24 4:30 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10060" rel="10060" data-issuekey="SCRUM-29" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 2:54 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10061" rel="10061" data-issuekey="SCRUM-30" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 2:54 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10064" rel="10064" data-issuekey="SCRUM-33" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 2:54 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10072" rel="10072" data-issuekey="SCRUM-41" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:00 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10076" rel="10076" data-issuekey="SCRUM-45" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:00 PM </td>
+                                            <td class="updated"> 03/oct/24 5:49 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10077" rel="10077" data-issuekey="SCRUM-46" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:01 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10078" rel="10078" data-issuekey="SCRUM-47" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:01 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10079" rel="10079" data-issuekey="SCRUM-48" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:01 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10080" rel="10080" data-issuekey="SCRUM-49" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:01 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10081" rel="10081" data-issuekey="SCRUM-50" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:01 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10082" rel="10082" data-issuekey="SCRUM-51" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:02 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10084" rel="10084" data-issuekey="SCRUM-53" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 4:02 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10087" rel="10087" data-issuekey="SCRUM-56" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:17 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10096" rel="10096" data-issuekey="SCRUM-65" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:20 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10143" rel="10143" data-issuekey="SCRUM-80" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 3:57 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10145" rel="10145" data-issuekey="SCRUM-82" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 3:57 PM </td>
+                                            <td class="updated"> 22/sep/24 2:59 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 2 fase 2</td>
+                    </tr>
+
+
+                <tr id="issuerow10091" rel="10091" data-issuekey="SCRUM-60" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:18 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10099" rel="10099" data-issuekey="SCRUM-68" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:20 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10100" rel="10100" data-issuekey="SCRUM-69" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:20 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10101" rel="10101" data-issuekey="SCRUM-70" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:21 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10102" rel="10102" data-issuekey="SCRUM-71" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:21 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10104" rel="10104" data-issuekey="SCRUM-73" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:21 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10105" rel="10105" data-issuekey="SCRUM-74" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:21 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10106" rel="10106" data-issuekey="SCRUM-75" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:22 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10107" rel="10107" data-issuekey="SCRUM-76" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:22 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10108" rel="10108" data-issuekey="SCRUM-77" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:22 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10142" rel="10142" data-issuekey="SCRUM-79" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 3:54 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10151" rel="10151" data-issuekey="SCRUM-88" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 3:59 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10154" rel="10154" data-issuekey="SCRUM-91" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:24 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10155" rel="10155" data-issuekey="SCRUM-92" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:33 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10156" rel="10156" data-issuekey="SCRUM-93" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:34 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10157" rel="10157" data-issuekey="SCRUM-94" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:34 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10159" rel="10159" data-issuekey="SCRUM-96" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:35 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10160" rel="10160" data-issuekey="SCRUM-97" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:36 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10161" rel="10161" data-issuekey="SCRUM-98" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:36 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10162" rel="10162" data-issuekey="SCRUM-99" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:37 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10195" rel="10195" data-issuekey="SCRUM-100" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:45 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10196" rel="10196" data-issuekey="SCRUM-101" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:46 PM </td>
+                                            <td class="updated"> 24/sep/24 10:36 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10201" rel="10201" data-issuekey="SCRUM-106" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:47 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10203" rel="10203" data-issuekey="SCRUM-108" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:47 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10204" rel="10204" data-issuekey="SCRUM-109" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:47 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10205" rel="10205" data-issuekey="SCRUM-110" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:48 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10206" rel="10206" data-issuekey="SCRUM-111" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:48 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10207" rel="10207" data-issuekey="SCRUM-112" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:48 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10208" rel="10208" data-issuekey="SCRUM-113" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:49 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10209" rel="10209" data-issuekey="SCRUM-114" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:49 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10213" rel="10213" data-issuekey="SCRUM-118" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 1:03 PM </td>
+                                            <td class="updated"> 22/sep/24 3:09 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 3</td>
+                    </tr>
+
+
+                <tr id="issuerow10088" rel="10088" data-issuekey="SCRUM-57" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:18 PM </td>
+                                            <td class="updated"> 22/sep/24 3:13 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10089" rel="10089" data-issuekey="SCRUM-58" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:18 PM </td>
+                                            <td class="updated"> 22/sep/24 3:13 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10092" rel="10092" data-issuekey="SCRUM-61" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:19 PM </td>
+                                            <td class="updated"> 22/sep/24 3:13 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10093" rel="10093" data-issuekey="SCRUM-62" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 15/sep/24 9:19 PM </td>
+                                            <td class="updated"> 22/sep/24 3:13 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10144" rel="10144" data-issuekey="SCRUM-81" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 3:57 PM </td>
+                                            <td class="updated"> 22/sep/24 3:13 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10150" rel="10150" data-issuekey="SCRUM-87" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 3:59 PM </td>
+                                            <td class="updated"> 22/sep/24 3:13 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10153" rel="10153" data-issuekey="SCRUM-90" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 20/sep/24 7:17 PM </td>
+                                            <td class="updated"> 22/sep/24 3:13 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10210" rel="10210" data-issuekey="SCRUM-115" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:50 PM </td>
+                                            <td class="updated"> 22/sep/24 3:14 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10211" rel="10211" data-issuekey="SCRUM-116" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:51 PM </td>
+                                            <td class="updated"> 22/sep/24 3:14 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+
+
+                <tr id="issuerow10212" rel="10212" data-issuekey="SCRUM-117" class="issuerow">
+                                            <td class="issuetype">    Historia
+</td>
+                                            <td class="assignee">    <em>sin asignar</em>
+</td>
+                                            <td class="status">
+                <span class=" jira-issue-status-lozenge aui-lozenge jira-issue-status-lozenge-blue-gray jira-issue-status-lozenge-new aui-lozenge-subtle jira-issue-status-lozenge-max-width-medium" data-tooltip="&lt;span class=&quot;jira-issue-status-tooltip-title&quot;&gt;Tareas por hacer&lt;/span&gt;">Tareas por hacer</span>    </td>
+                                            <td class="created"> 22/sep/24 12:52 PM </td>
+                                            <td class="updated"> 22/sep/24 3:14 PM </td>
+                                            <td class="customfield_10020">Tablero Sprint 4</td>
+                    </tr>
+        </tbody>
+    </table>
+    <div class="end-of-stable-message"></div>
+            <table border="1" >
+<tr>
+    <td bgcolor="#dddddd" colspan="6"><font size="1">
+        Generado a las Tue Oct 08 02:23:16 UTC 2024 por JEREMY . ZUNIGA SEPULVEDA usando JIRA 1001.0.0-SNAPSHOT#100267-rev:818b1c9d74a6ed482a715e6842fd07ed53a53391.
+    </font></td>
+</tr>
+</table>
+
+</body>
+</html>
