@@ -1,0 +1,1843 @@
+-- Drop existing tables aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+DROP TABLE IF EXISTS elemento_plano CASCADE;
+DROP TABLE IF EXISTS dia_semana CASCADE;
+DROP TABLE IF EXISTS puesto_archivado CASCADE;
+DROP TABLE IF EXISTS arriendo_puesto CASCADE;
+DROP TABLE IF EXISTS puesto CASCADE;
+DROP TABLE IF EXISTS json_feria CASCADE;
+DROP TABLE IF EXISTS intereses CASCADE;
+DROP TABLE IF EXISTS horario_puesto CASCADE;
+DROP TABLE IF EXISTS feriante CASCADE;
+DROP TABLE IF EXISTS feria CASCADE;
+DROP TABLE IF EXISTS encargado_feria CASCADE;
+DROP TABLE IF EXISTS detalle CASCADE;
+DROP TABLE IF EXISTS contrato_puesto CASCADE;
+DROP TABLE IF EXISTS solicitudes_apertura CASCADE;
+DROP TABLE IF EXISTS supervisor CASCADE;
+DROP TABLE IF EXISTS team_supervisor CASCADE;
+DROP TABLE IF EXISTS tipo_estado_contrato CASCADE;
+DROP TABLE IF EXISTS tipo_pago CASCADE;
+DROP TABLE IF EXISTS tipo_puesto CASCADE;
+DROP TABLE IF EXISTS tipo_usuario CASCADE;
+DROP TABLE IF EXISTS usuario CASCADE;
+DROP TABLE IF EXISTS administrador_municipal CASCADE;
+DROP TABLE IF EXISTS comuna CASCADE;
+DROP TABLE IF EXISTS region CASCADE;
+DROP TABLE IF EXISTS estado_feria CASCADE;
+DROP TABLE IF EXISTS programa_feria CASCADE;
+DROP TABLE IF EXISTS detalle_team_supervisor CASCADE;
+DROP TABLE IF EXISTS banco_encargado CASCADE;
+DROP TABLE IF EXISTS detalle_programa_feria CASCADE;
+DROP TABLE IF EXISTS detalle_solicitud CASCADE;
+DROP TABLE IF EXISTS detalle_supervisor CASCADE;
+DROP TABLE IF EXISTS redes_sociales CASCADE;
+DROP TABLE IF EXISTS tipo_red CASCADE;
+DROP TABLE IF EXISTS estado_puesto CASCADE;
+DROP TABLE IF EXISTS estado_actividad CASCADE;
+DROP TABLE IF EXISTS detalle_horario_empleado CASCADE;
+DROP TABLE IF EXISTS detalle_team_vacante CASCADE;
+DROP TABLE IF EXISTS estado_horario_feria CASCADE;
+DROP TABLE IF EXISTS log_empleado CASCADE;
+DROP TABLE IF EXISTS postulaciones CASCADE;
+DROP TABLE IF EXISTS estado_postulacion CASCADE;
+DROP TABLE IF EXISTS actividad_feria CASCADE;
+DROP TABLE IF EXISTS dia_armado CASCADE;
+DROP TABLE IF EXISTS log_actividad_feria CASCADE;
+DROP TABLE IF EXISTS log_detalle_programa CASCADE;
+DROP TABLE IF EXISTS rol_empleado CASCADE;
+DROP TABLE IF EXISTS estado_solicitud CASCADE;
+DROP TABLE IF EXISTS estado_vacante CASCADE;
+DROP TABLE IF EXISTS estado_arriendo CASCADE;
+DROP TABLE IF EXISTS estado_contrato CASCADE;
+DROP TABLE IF EXISTS plano CASCADE;
+DROP TABLE IF EXISTS tipo_elemento CASCADE;
+
+CREATE TABLE actividad_feria (
+    id_actividad_feria SERIAL NOT NULL,
+    id_horario_feria   INTEGER NOT NULL,
+    fecha              DATE NOT NULL,
+    armado_hecho       BOOLEAN NOT NULL,
+    feria_hecha        BOOLEAN NOT NULL,
+    activo BOOLEAN
+);
+
+ALTER TABLE actividad_feria ADD CONSTRAINT actividad_feria_pk PRIMARY KEY ( id_actividad_feria );
+
+CREATE TABLE administrador_municipal (
+    id_user_adm      SERIAL NOT NULL,
+    user_mail       CHARACTER VARYING(80) NOT NULL,
+    id_tipo_usuario INTEGER NOT NULL,
+    nombre          CHARACTER VARYING(40) NOT NULL,
+    apellido        CHARACTER VARYING(40) NOT NULL,
+    rut             INTEGER NOT NULL,
+    rut_div         CHARACTER VARYING(1) NOT NULL,
+    telefono        INTEGER,
+    contrasena      CHARACTER VARYING(200) NOT NULL,
+    url_foto_perfil CHARACTER VARYING(200)
+);
+
+ALTER TABLE administrador_municipal ADD CONSTRAINT administrador_pk PRIMARY KEY ( id_user_adm );
+
+CREATE TABLE dia_semana (
+    id_dia INTEGER NOT NULL,
+    dia    CHARACTER VARYING(20) NOT NULL
+);
+
+ALTER TABLE dia_semana ADD CONSTRAINT dia_semana_pk PRIMARY KEY ( id_dia );
+
+
+
+ALTER TABLE administrador_municipal ADD CONSTRAINT adm_mail__un UNIQUE ( user_mail );
+
+CREATE TABLE banco_encargado (
+    mail_banco      CHARACTER VARYING(100) NOT NULL,
+    id_user_enf     INTEGER NOT NULL,
+    nombre_asociado CHARACTER VARYING(50) NOT NULL,
+    numero_cuenta   CHARACTER VARYING(50) NOT NULL
+);
+
+ALTER TABLE banco_encargado ADD CONSTRAINT banco_encargado_pk PRIMARY KEY ( mail_banco );
+
+CREATE TABLE comuna (
+    id_comuna INTEGER NOT NULL,
+    comuna    CHARACTER VARYING(80) NOT NULL,
+    id_region INTEGER NOT NULL
+);
+
+ALTER TABLE comuna ADD CONSTRAINT comuna_pk PRIMARY KEY ( id_comuna );
+
+CREATE TABLE contrato_puesto (
+    id_contrato     SERIAL NOT NULL,
+    id_user_fte     INTEGER NOT NULL,
+    fecha_pago           DATE NOT NULL,
+    id_arriendo_puesto       INTEGER NOT NULL,
+    id_tipo_pago    INTEGER NOT NULL,
+    id_estado_contrato INTEGER NOT NULL,
+    precio          INTEGER NOT NULL,
+    buy_order       CHARACTER VARYING(100) NOT NULL, 
+    session_id      CHARACTER VARYING(100) NOT NULL
+);
+
+ALTER TABLE contrato_puesto ADD CONSTRAINT contrato_diario_pk PRIMARY KEY ( id_contrato );
+
+CREATE TABLE detalle_horario_empleado (
+    id_detalle_horario SERIAL NOT NULL,
+    id_vacante         INTEGER NOT NULL,
+    id_dia             INTEGER NOT NULL,
+    hora_entrada       TIME WITHOUT TIME ZONE NOT NULL,
+    hora_salida        TIME WITHOUT TIME ZONE NOT NULL
+);
+
+ALTER TABLE detalle_horario_empleado ADD CONSTRAINT detalle_horario_empleado_pk PRIMARY KEY ( id_detalle_horario );
+
+CREATE TABLE detalle_programa_feria (
+    id_horario_feria    SERIAL NOT NULL,
+    id_feria            INTEGER NOT NULL,
+    id_dia                 INTEGER NOT NULL,
+    hora_inicio         TIME WITHOUT TIME ZONE NOT NULL,
+    hora_termino        TIME WITHOUT TIME ZONE NOT NULL,
+    id_dia_armado       INTEGER NOT NULL,
+    hora_inicio_armado  TIME WITHOUT TIME ZONE NOT NULL,
+    hora_termino_armado TIME WITHOUT TIME ZONE NOT NULL,
+    activo              BOOLEAN NOT NULL
+);
+
+ALTER TABLE detalle_programa_feria ADD CONSTRAINT detalle_programa_pk PRIMARY KEY ( id_horario_feria );
+
+ALTER TABLE detalle_programa_feria 
+    ADD CONSTRAINT id_dia_to_programa_FK FOREIGN KEY (id_dia)
+        REFERENCES dia_semana (id_dia);
+
+
+CREATE TABLE detalle_solicitud (
+    id_archivo            SERIAL NOT NULL,
+    nombre_archivo        CHARACTER VARYING(100) NOT NULL,
+    url_archivo           CHARACTER VARYING(200) NOT NULL,
+    solicitud_apertura_id INTEGER NOT NULL
+);
+
+ALTER TABLE detalle_solicitud ADD CONSTRAINT detalle_pk PRIMARY KEY ( id_archivo );
+
+CREATE TABLE detalle_team_vacante (
+    id_vacante        SERIAL NOT NULL,
+    id_user_fte       INTEGER,
+    id_feria          INTEGER NOT NULL,
+    id_rol            INTEGER NOT NULL,
+    ingreso           DATE NOT NULL,
+    termino           DATE NOT NULL,
+    id_estado_vacante INTEGER NOT NULL
+);
+
+ALTER TABLE detalle_team_vacante ADD CONSTRAINT team_supervisor_pk PRIMARY KEY ( id_vacante );
+
+CREATE TABLE dia_armado (
+    id_dia_armado INTEGER NOT NULL,
+    cuando        CHARACTER VARYING(20) NOT NULL
+);
+
+ALTER TABLE dia_armado ADD CONSTRAINT dia_armado_pk PRIMARY KEY ( id_dia_armado );
+
+
+CREATE TABLE encargado_feria (
+    id_user_enf     SERIAL NOT NULL,
+    user_mail       CHARACTER VARYING(80) NOT NULL,
+    id_tipo_usuario INTEGER NOT NULL,
+    nombre          CHARACTER VARYING(40) NOT NULL,
+    apellido        CHARACTER VARYING(40),
+    rut             INTEGER NOT NULL,
+    rut_div         CHARACTER VARYING(1) NOT NULL,
+    telefono        INTEGER,
+    contrasena      CHARACTER VARYING(200) NOT NULL,
+    url_foto_perfil CHARACTER VARYING(200)
+);
+
+ALTER TABLE encargado_feria ADD CONSTRAINT encargado_feria_pk PRIMARY KEY ( id_user_enf );
+
+ALTER TABLE encargado_feria ADD CONSTRAINT encargado_feria__un UNIQUE ( user_mail );
+
+CREATE TABLE estado_feria (
+    id_estado INTEGER NOT NULL,
+    estado    CHARACTER VARYING(20) NOT NULL
+);
+
+ALTER TABLE estado_feria ADD CONSTRAINT estado_feria_pk PRIMARY KEY ( id_estado );
+
+CREATE TABLE estado_puesto (
+    id_estado_puesto INTEGER NOT NULL,
+    estado           CHARACTER VARYING(20) NOT NULL
+);
+
+ALTER TABLE estado_puesto ADD CONSTRAINT estado_puesto_pk PRIMARY KEY ( id_estado_puesto );
+
+CREATE TABLE estado_solicitud (
+    id_estado INTEGER NOT NULL,
+    estado    CHARACTER VARYING(20) NOT NULL
+);
+
+ALTER TABLE estado_solicitud ADD CONSTRAINT estado_solicitud_pk PRIMARY KEY ( id_estado );
+
+CREATE TABLE estado_vacante (
+    id_estado INTEGER NOT NULL,
+    estado    CHARACTER VARYING(20) NOT NULL
+);
+
+ALTER TABLE estado_vacante ADD CONSTRAINT estado_vacante_pk PRIMARY KEY ( id_estado );
+
+CREATE TABLE feria (
+    id_feria    SERIAL NOT NULL,
+    id_user_enf INTEGER NOT NULL,
+    nombre      CHARACTER VARYING(80) NOT NULL,
+    id_comuna   INTEGER NOT NULL,
+    id_estado   INTEGER NOT NULL,
+    mail_banco  CHARACTER VARYING(100)
+);
+
+ALTER TABLE feria ADD CONSTRAINT feria_pk PRIMARY KEY ( id_feria );
+CREATE TABLE plano (
+    id_plano SERIAL NOT NULL,
+    id_feria INTEGER NOT NULL,
+    width    DOUBLE PRECISION  NOT NULL,
+    height   DOUBLE PRECISION NOT NULL,
+    PRIMARY KEY (id_plano)
+);
+
+
+CREATE TABLE puesto (
+    id_puesto        SERIAL NOT NULL,
+    id_tipo_puesto   INTEGER ,
+    numero           INTEGER NOT NULL,
+    descripcion      TEXT ,
+    id_feria         INTEGER NOT NULL,
+    id_estado_puesto INTEGER NOT NULL,
+    precio INTEGER 
+);
+
+ALTER TABLE puesto ADD CONSTRAINT puesto_pk PRIMARY KEY ( id_puesto );
+
+
+
+
+ALTER TABLE plano 
+    ADD CONSTRAINT id_feria_to_plano_FK FOREIGN KEY (id_feria)
+        REFERENCES feria (id_feria);
+
+
+CREATE TABLE tipo_elemento (
+    id_tipo_elemento INTEGER NOT NULL,
+    elemento CHARACTER VARYING NOT NULL,
+    PRIMARY KEY (id_tipo_elemento)
+);
+
+
+CREATE TABLE elemento_plano (
+    id_elemento SERIAL NOT NULL, 
+    id_plano INTEGER NOT NULL ,
+	nombre_elemento CHARACTER VARYING NOT NULL ,
+    id_tipo_elemento INTEGER NOT NULL,
+    dimenciones JSONB ,
+    style JSONB,
+    id_puesto INTEGER,
+    PRIMARY KEY (id_elemento)
+);
+
+ALTER TABLE elemento_plano 
+    ADD CONSTRAINT id_plano_to_elemento_FK FOREIGN KEY (id_plano)
+        REFERENCES plano (id_plano);
+
+ALTER TABLE elemento_plano 
+    ADD CONSTRAINT id_tipo_ele_to_elemento_FK FOREIGN KEY (id_tipo_elemento)
+        REFERENCES tipo_elemento (id_tipo_elemento);
+
+
+ALTER TABLE elemento_plano 
+    ADD CONSTRAINT id_puesto_to_element_FK FOREIGN KEY (id_puesto)
+        REFERENCES puesto (id_puesto);
+
+CREATE TABLE feriante (
+    id_user_fte     SERIAL NOT NULL,
+    user_mail       CHARACTER VARYING(80) NOT NULL,
+    id_tipo_usuario INTEGER NOT NULL,
+    nombre          CHARACTER VARYING(40) NOT NULL,
+    apellido        CHARACTER VARYING(40),
+    rut             INTEGER NOT NULL,
+    rut_div         CHARACTER VARYING(1) NOT NULL,
+    biografia       TEXT,
+    telefono        INTEGER,
+    auth_google     CHARACTER VARYING(100),
+    contrasena      CHARACTER VARYING(200) NOT NULL,
+    perfil_privado  BOOLEAN NOT NULL,
+    url_foto_perfil CHARACTER VARYING(200)
+);
+
+ALTER TABLE feriante ADD CONSTRAINT feriante_pk PRIMARY KEY ( id_user_fte );
+
+ALTER TABLE feriante ADD CONSTRAINT feriante__un UNIQUE ( user_mail );
+
+ALTER TABLE feriante
+ALTER COLUMN perfil_privado SET DEFAULT false;
+
+
+CREATE TABLE intereses (
+    id_interes  SERIAL NOT NULL,
+    id_user_fte INTEGER NOT NULL,
+    interes     CHARACTER VARYING(40) NOT NULL
+);
+
+ALTER TABLE intereses ADD CONSTRAINT intereses_pk PRIMARY KEY ( id_interes );
+
+
+
+CREATE TABLE log_actividad_feria (
+    id_actividad     INTEGER NOT NULL,
+    id_horario_feria INTEGER NOT NULL,
+    fecha            DATE NOT NULL,
+    armado_hecho     BOOLEAN NOT NULL,
+    feria_hecha      BOOLEAN NOT NULL
+);
+
+ALTER TABLE log_actividad_feria ADD CONSTRAINT log_actividad_feria_pk PRIMARY KEY ( id_actividad );
+
+CREATE TABLE log_detalle_programa (
+    id_horario_feria    INTEGER NOT NULL,
+    id_feria            INTEGER NOT NULL,
+    dia                 CHARACTER VARYING(20) NOT NULL,
+    hora_inicio         TIME WITHOUT TIME ZONE NOT NULL,
+    hora_termino        TIME WITHOUT TIME ZONE NOT NULL,
+    dia_armado          CHARACTER VARYING(20) NOT NULL,
+    hora_inicio_armado  time WITHOUT TIME ZONE NOT NULL,
+    hora_termino_armado TIME WITHOUT TIME ZONE NOT NULL,
+    activo              CHAR(1) NOT NULL
+);
+
+ALTER TABLE log_detalle_programa ADD CONSTRAINT log_detalle_programa_pk PRIMARY KEY ( id_horario_feria );
+
+CREATE TABLE log_empleado (
+    id_log  INTEGER NOT NULL,
+    feria   CHARACTER VARYING(100) NOT NULL,
+    ingreso DATE NOT NULL,
+    termino DATE NOT NULL
+);
+
+ALTER TABLE log_empleado ADD CONSTRAINT log_empleado_pk PRIMARY KEY ( id_log );
+
+CREATE TABLE estado_postulacion (
+    id_estado INTEGER NOT NULL, 
+    estado CHARACTER VARYING, 
+    PRIMARY KEY (id_estado)
+);
+
+
+CREATE TABLE postulaciones (
+    id_postulacion SERIAL NOT NULL,
+    id_vacante     INTEGER NOT NULL,
+    id_user_fte    INTEGER NOT NULL,
+    id_estado      INTEGER NOT NULL
+);
+
+ALTER TABLE postulaciones ADD CONSTRAINT invitaciones_pk PRIMARY KEY ( id_postulacion );
+
+ALTER TABLE postulaciones 
+    ADD CONSTRAINT id_estado_postulacion_FK FOREIGN KEY (id_estado)
+         REFERENCES estado_postulacion (id_estado);
+
+
+CREATE TABLE estado_arriendo (
+    id_estado_arriendo INTEGER,
+    estado CHARACTER VARYING, 
+    PRIMARY KEY(id_estado_arriendo)
+);
+
+
+
+CREATE TABLE arriendo_puesto (
+    id_arriendo_puesto SERIAL NOT NULL,
+    id_actividad_feria INTEGER NOT NULL,
+    id_puesto INTEGER NOT NULL , 
+    id_estado_arriendo INTEGER NOT NULL,
+    activo BOOLEAN,
+    PRIMARY KEY (id_arriendo_puesto)
+);
+
+ALTER TABLE ARRIENDO_PUESTO 
+    ADD CONSTRAINT id_puesto_to_arriendo_FK FOREIGN KEY (id_puesto)
+        REFERENCES puesto (id_puesto);
+
+ALTER TABLE ARRIENDO_PUESTO 
+    ADD CONSTRAINT id_actividad_to_arriendo_FK FOREIGN KEY (id_actividad_feria)
+        REFERENCES actividad_feria (id_actividad_feria);
+
+ALTER TABLE ARRIENDO_PUESTO 
+    ADD CONSTRAINT id_estado_to_arriendo_fk FOREIGN KEY (id_estado_arriendo)
+        REFERENCES estado_arriendo (id_estado_arriendo);
+
+CREATE TABLE puesto_archivado (
+    id_archivado SERIAL NOT NULL,
+    id_user_fte  INTEGER NOT NULL,
+    nombre_feria CHARACTER VARYING(50) NOT NULL,
+    puesto_feria INTEGER NOT NULL,
+    id_feriante  INTEGER NOT NULL
+);
+
+ALTER TABLE puesto_archivado ADD CONSTRAINT puesto_archivado_pk PRIMARY KEY ( id_archivado );
+
+CREATE TABLE redes_sociales (
+    id_redes    SERIAL NOT NULL,
+    id_user_fte INTEGER NOT NULL,
+    tipo_red    INTEGER NOT NULL,
+    url_red     CHARACTER VARYING(200) NOT NULL
+);
+
+ALTER TABLE redes_sociales ADD CONSTRAINT redes_sociales_pk PRIMARY KEY ( id_redes );
+
+CREATE TABLE region (
+    id_region INTEGER NOT NULL,
+    region    CHARACTER VARYING(100) NOT NULL
+);
+
+ALTER TABLE region ADD CONSTRAINT region_pk PRIMARY KEY ( id_region );
+
+CREATE TABLE rol_empleado (
+    id_rol INTEGER NOT NULL,
+    rol    CHARACTER VARYING(20) NOT NULL
+);
+
+ALTER TABLE rol_empleado ADD CONSTRAINT rol_empleado_pk PRIMARY KEY ( id_rol );
+
+CREATE TABLE solicitudes_apertura (
+    id_solicitud SERIAL NOT NULL,
+    id_user_adm  INTEGER NOT NULL,
+    id_feria     INTEGER NOT NULL,
+    id_estado    INTEGER NOT NULL
+);
+
+ALTER TABLE solicitudes_apertura ADD CONSTRAINT solicitudes_apertura_pk PRIMARY KEY ( id_solicitud );
+
+CREATE TABLE estado_contrato (
+    id_estado_contrato INTEGER NOT NULL,
+    detalle            CHARACTER VARYING(50) NOT NULL
+);
+
+ALTER TABLE estado_contrato ADD CONSTRAINT id_estado_contrato_pk PRIMARY KEY ( id_estado_contrato );
+
+CREATE TABLE tipo_pago (
+    id_tipo_pago INTEGER NOT NULL,
+    detalle      CHARACTER VARYING(50) NOT NULL
+);
+
+ALTER TABLE tipo_pago ADD CONSTRAINT tipo_pago_pk PRIMARY KEY ( id_tipo_pago );
+
+CREATE TABLE tipo_puesto (
+    id_tipo_puesto INTEGER NOT NULL,
+    detalle        CHARACTER VARYING(50) NOT NULL
+);
+
+ALTER TABLE tipo_puesto ADD CONSTRAINT tipo_puesto_pk PRIMARY KEY ( id_tipo_puesto );
+
+CREATE TABLE tipo_red (
+    id_tipo_red  INTEGER NOT NULL,
+    red_social   CHARACTER VARYING(30) NOT NULL,
+    url_foto_red CHARACTER VARYING(200) NOT NULL
+);
+
+ALTER TABLE tipo_red ADD CONSTRAINT tipo_red_pk PRIMARY KEY ( id_tipo_red );
+
+CREATE TABLE tipo_usuario (
+    id_tipo_usuario INTEGER NOT NULL,
+    detalle         CHARACTER VARYING(30)
+);
+
+ALTER TABLE tipo_usuario ADD CONSTRAINT tipo_usuario_pk PRIMARY KEY ( id_tipo_usuario );
+
+ALTER TABLE comuna
+    ADD CONSTRAINT comuna_region_fk FOREIGN KEY ( id_region )
+        REFERENCES region ( id_region );
+
+ALTER TABLE contrato_puesto
+    ADD CONSTRAINT id_arriendo_to_contrato_FK FOREIGN KEY ( id_arriendo_puesto )
+        REFERENCES arriendo_puesto ( id_arriendo_puesto );
+
+ALTER TABLE contrato_puesto
+    ADD CONSTRAINT contrato_diario_tipo_pago_fk FOREIGN KEY ( id_tipo_pago )
+        REFERENCES tipo_pago ( id_tipo_pago );
+
+ALTER TABLE contrato_puesto
+    ADD CONSTRAINT contrato_puesto_feriante_fk FOREIGN KEY ( id_user_fte )
+        REFERENCES feriante ( id_user_fte );
+
+ALTER TABLE banco_encargado
+    ADD CONSTRAINT encargado_mail_to_banco_fk FOREIGN KEY ( id_user_enf )
+        REFERENCES encargado_feria ( id_user_enf );
+
+ALTER TABLE contrato_puesto
+    ADD CONSTRAINT estado_puesto_contrato_fk FOREIGN KEY ( id_estado_contrato )
+        REFERENCES estado_contrato ( id_estado_contrato );
+
+ALTER TABLE feria
+    ADD CONSTRAINT feria_banco_encargado_fk FOREIGN KEY ( mail_banco )
+        REFERENCES banco_encargado ( mail_banco );
+
+ALTER TABLE feria
+    ADD CONSTRAINT feria_encargado_feria_fk FOREIGN KEY ( id_user_enf )
+        REFERENCES encargado_feria ( id_user_enf );
+
+
+ALTER TABLE solicitudes_apertura
+    ADD CONSTRAINT id_admin_soli_fk FOREIGN KEY ( id_user_adm )
+        REFERENCES administrador_municipal ( id_user_adm );
+
+ALTER TABLE detalle_solicitud
+    ADD CONSTRAINT id_apertura_fk FOREIGN KEY ( solicitud_apertura_id )
+        REFERENCES solicitudes_apertura ( id_solicitud );
+
+ALTER TABLE feria
+    ADD CONSTRAINT id_comuna_fk FOREIGN KEY ( id_comuna )
+        REFERENCES comuna ( id_comuna );
+
+ALTER TABLE detalle_programa_feria
+    ADD CONSTRAINT id_dia_armado_fk FOREIGN KEY ( id_dia_armado )
+        REFERENCES dia_armado ( id_dia_armado );
+
+ALTER TABLE detalle_horario_empleado
+    ADD CONSTRAINT id_dia_to_emphorario_fk FOREIGN KEY ( id_dia )
+        REFERENCES dia_semana ( id_dia );
+
+ALTER TABLE postulaciones
+    ADD CONSTRAINT id_dtv_to_postulaciones_fk FOREIGN KEY ( id_vacante )
+        REFERENCES detalle_team_vacante ( id_vacante );
+
+ALTER TABLE detalle_team_vacante
+    ADD CONSTRAINT id_estado_to_dtv_fk FOREIGN KEY ( id_estado_vacante )
+        REFERENCES estado_vacante ( id_estado );
+
+ALTER TABLE solicitudes_apertura
+    ADD CONSTRAINT id_estado_to_soli_fk FOREIGN KEY ( id_estado )
+        REFERENCES estado_solicitud ( id_estado );
+
+ALTER TABLE feria
+    ADD CONSTRAINT id_feria_estado_fk FOREIGN KEY ( id_estado )
+        REFERENCES estado_feria ( id_estado );
+
+ALTER TABLE detalle_team_vacante
+    ADD CONSTRAINT id_feria_to_dtv_fk FOREIGN KEY ( id_feria )
+        REFERENCES feria ( id_feria );
+
+
+ALTER TABLE detalle_team_vacante
+    ADD CONSTRAINT id_fte_to_dtv_fk FOREIGN KEY ( id_user_fte )
+        REFERENCES feriante ( id_user_fte );
+
+ALTER TABLE postulaciones
+    ADD CONSTRAINT id_fte_to_postulaciones_fk FOREIGN KEY ( id_user_fte )
+        REFERENCES feriante ( id_user_fte );
+
+ALTER TABLE redes_sociales
+    ADD CONSTRAINT id_fte_to_redes_fk FOREIGN KEY ( id_user_fte )
+        REFERENCES feriante ( id_user_fte );
+
+ALTER TABLE actividad_feria
+    ADD CONSTRAINT id_horario_to_actividad_fk FOREIGN KEY ( id_horario_feria )
+        REFERENCES detalle_programa_feria ( id_horario_feria );
+
+ALTER TABLE log_actividad_feria
+    ADD CONSTRAINT id_horario_to_log_fk FOREIGN KEY ( id_horario_feria )
+        REFERENCES log_detalle_programa ( id_horario_feria );
+
+ALTER TABLE detalle_team_vacante
+    ADD CONSTRAINT id_rol_to_dtv_fk FOREIGN KEY ( id_rol )
+        REFERENCES rol_empleado ( id_rol );
+
+ALTER TABLE redes_sociales
+    ADD CONSTRAINT id_tipo_red_to_redes_fk FOREIGN KEY ( tipo_red )
+        REFERENCES tipo_red ( id_tipo_red );
+
+ALTER TABLE administrador_municipal
+    ADD CONSTRAINT id_tipo_user_to_admin FOREIGN KEY ( id_tipo_usuario )
+        REFERENCES tipo_usuario ( id_tipo_usuario );
+
+ALTER TABLE feriante
+    ADD CONSTRAINT id_tipo_user_to_feriante_fk FOREIGN KEY ( id_tipo_usuario )
+        REFERENCES tipo_usuario ( id_tipo_usuario );
+
+ALTER TABLE detalle_horario_empleado
+    ADD CONSTRAINT id_vacante_to_horario_fk FOREIGN KEY ( id_vacante )
+        REFERENCES detalle_team_vacante ( id_vacante );
+
+ALTER TABLE intereses
+    ADD CONSTRAINT intereses_feriante_fk FOREIGN KEY ( id_user_fte )
+        REFERENCES feriante ( id_user_fte );
+
+ALTER TABLE detalle_programa_feria
+    ADD CONSTRAINT programa_id_feria_fk FOREIGN KEY ( id_feria )
+        REFERENCES feria ( id_feria );
+
+ALTER TABLE puesto_archivado
+    ADD CONSTRAINT puesto_archivado_feriante_fk FOREIGN KEY ( id_user_fte )
+        REFERENCES feriante ( id_user_fte );
+
+ALTER TABLE puesto
+    ADD CONSTRAINT puesto_estado_puesto_fk FOREIGN KEY ( id_estado_puesto )
+        REFERENCES estado_puesto ( id_estado_puesto );
+
+ALTER TABLE puesto
+    ADD CONSTRAINT puesto_feria_fk FOREIGN KEY ( id_feria )
+        REFERENCES feria ( id_feria );
+
+ALTER TABLE puesto
+    ADD CONSTRAINT puesto_tipo_puesto_fk FOREIGN KEY ( id_tipo_puesto )
+        REFERENCES tipo_puesto ( id_tipo_puesto );
+
+ALTER TABLE solicitudes_apertura
+    ADD CONSTRAINT solicitudes_apertura_feria_fk FOREIGN KEY ( id_feria )
+        REFERENCES feria ( id_feria );
+
+ALTER TABLE encargado_feria
+    ADD CONSTRAINT tipo_user_to_encargado_fk FOREIGN KEY ( id_tipo_usuario )
+        REFERENCES tipo_usuario ( id_tipo_usuario );
+
+
+--ALTERS PARA COLUMNAS DEFAULT
+
+
+ALTER TABLE postulaciones
+ALTER COLUMN id_estado SET DEFAULT 1;
+
+ALTER TABLE puesto 
+ALTER COLUMN id_estado_puesto SET DEFAULT 1;
+
+ALTER TABLE solicitudes_apertura
+ALTER COLUMN id_estado SET DEFAULT 1;
+
+ALTER TABLE feria
+ALTER COLUMN id_estado SET DEFAULT 1;
+
+ALTER TABLE actividad_feria
+ALTER COLUMN armado_hecho SET DEFAULT false;
+
+ALTER TABLE actividad_feria
+ALTER COLUMN feria_hecha SET DEFAULT false;
+
+ALTER TABLE actividad_feria
+ALTER COLUMN activo SET DEFAULT true;
+
+ALTER TABLE arriendo_puesto
+ALTER COLUMN id_estado_arriendo SET DEFAULT 1;
+
+ALTER TABLE arriendo_puesto
+ALTER COLUMN activo SET DEFAULT true;
+
+--- ELIMINAR LAS FUNCIONES
+DROP FUNCTION IF EXISTS contar_puestos_actuales(INTEGER);
+DROP FUNCTION IF EXISTS traer_puestos_feria(INTEGER);
+DROP FUNCTION IF EXISTS obtener_ferias_encargado(INTEGER);
+DROP FUNCTION IF EXISTS insertar_solicitud_apertura(CHARACTER VARYING, CHARACTER VARYING, INTEGER, CHARACTER VARYING);
+DROP FUNCTION IF EXISTS obtener_horarios_ferias_encargado( integer[]);
+DROP FUNCTION IF EXISTS obtener_horarios_ferias_feedFerias( integer[]);
+DROP FUNCTION IF EXISTS public.get_plano_elements( integer);
+DROP FUNCTION IF EXISTS public.insertar_solicitud_apertura( integer, integer);
+DROP FUNCTION IF EXISTS public.obtener_ferias_paginado( integer, integer , integer , integer);
+DROP FUNCTION IF EXISTS public.obtener_puestos_actividad( CHARACTER VARYING, DATE);
+DROP FUNCTION IF EXISTS public.traer_semana_actividad_feria( integer);
+DROP FUNCTION IF EXISTS public.obtener_actividades_feria( integer[]);
+
+-- FUNCIONES PARA EL ENCARGADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+-- OBTIENE LAS FERIAS DE UN ENCARGADO
+CREATE OR REPLACE FUNCTION obtener_ferias_encargado(id_user INTEGER)
+RETURNS TABLE (
+    id_feria INTEGER,
+    nombre_feria character varying(80),
+    comuna character varying(80),
+    region character varying(80),
+    estado character varying(80),
+    puestos_actuales INT
+
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        f.id_feria, 
+        f.nombre AS nombre_feria, 
+        c.comuna, 
+        g.region ,
+        es.estado,
+        contar_puestos_actuales(f.id_feria) AS puestos_actuales
+
+    FROM encargado_feria ef
+    JOIN feria f ON ef.id_user_enf = f.id_user_enf
+    JOIN comuna c ON f.id_comuna = c.id_comuna
+    JOIN region g ON c.id_region = g.id_region
+    JOIN estado_feria es ON f.id_estado = es.id_estado
+    WHERE ef.id_user_enf = id_user -- uso del parametro
+    ORDER BY id_feria ASC;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- Retorna 7 columnas (el programa de la feria , activos y desactivos) para cada id de feria --> para la vista encargado
+CREATE OR REPLACE FUNCTION obtener_horarios_ferias_encargado(ferias_id INTEGER[])
+RETURNS TABLE (
+    id_feria INTEGER,
+    id_dia INTEGER,
+    hora_inicio TIME WITHOUT TIME ZONE,
+    hora_termino TIME WITHOUT TIME ZONE,
+    dia_armado INTEGER,
+    hora_inicio_armado TIME WITHOUT TIME ZONE,
+    hora_termino_armado TIME WITHOUT TIME ZONE,
+    activo boolean
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        h.id_feria,
+        h.id_dia,
+        h.hora_inicio,
+        h.hora_termino,
+        h.id_dia_armado,
+        h.hora_inicio_armado,
+        h.hora_termino_armado,
+        h.activo
+    FROM 
+        detalle_programa_feria h
+    WHERE 
+        h.id_feria = ANY(ferias_id);
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- INSERTA LOS TIKET
+CREATE OR REPLACE FUNCTION insertar_solicitud_apertura(
+    id_user_adm INTEGER,
+    id_feria INTEGER
+) RETURNS VOID AS $$
+BEGIN
+    INSERT INTO solicitudes_apertura ( id_user_adm, id_feria)
+    VALUES (id_user_adm, id_feria);
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_plano_elements(func_id_plano INTEGER) 
+RETURNS TABLE(
+	id_feria INTEGER,
+    id_elemento INTEGER, 
+	id_plano INTEGER,
+    nombre_elemento CHARACTER VARYING(50),
+    id_tipo_elemento INTEGER,
+    dimenciones JSONB,
+    style JSONB,
+    "dataPuesto" JSON
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+		(select f.id_feria from feria f 
+		JOIN plano p ON  p.id_plano = func_id_plano limit 1 ) AS id_feria,
+        ep.id_elemento, 
+		ep.id_plano,
+        ep.nombre_elemento,
+        ep.id_tipo_elemento,
+        ep.dimenciones,
+        ep.style,
+        COALESCE(
+            (SELECT row_to_json(p) FROM PUESTO p WHERE ep.id_puesto = p.id_puesto),
+            'null'::json
+        ) AS DataPuesto
+    FROM elemento_plano ep
+    WHERE ep.id_plano = func_id_plano;
+END; 
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+-- FIN DE LAS FUNCIONES DEL ENCARGADOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+
+-- INICIO FUNCIONES PARA EL FEED DE FERIASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
+-- Retorna las  columnas  activas (del programa de la feria) para cada id de feria --> para el feed de ferias
+CREATE OR REPLACE FUNCTION obtener_horarios_ferias_feedFerias(ferias_id INTEGER[])
+RETURNS TABLE (
+    id_feria INTEGER,
+    id_dia INTEGER,
+    id_horario_feria INTEGER,
+    hora_inicio TIME WITHOUT TIME ZONE,
+    hora_termino TIME WITHOUT TIME ZONE,
+    id_dia_armado INTEGER,
+    hora_inicio_armado TIME WITHOUT TIME ZONE,
+    hora_termino_armado TIME WITHOUT TIME ZONE
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        h.id_feria,
+        h.id_dia,
+        h.id_horario_feria,
+        h.hora_inicio,
+        h.hora_termino,
+        h.id_dia_armado,
+        h.hora_inicio_armado,
+        h.hora_termino_armado
+    FROM 
+        detalle_programa_feria h
+    WHERE 
+        h.id_feria = ANY(ferias_id) AND h.activo = true; 
+END;
+$$ LANGUAGE plpgsql;
+
+
+------------------
+-- TRAE LOS PUESTOS  + feria a la que pertenece
+
+CREATE OR REPLACE FUNCTION traer_puestos_feria(id_de_feria INTEGER)
+RETURNS TABLE (
+    id_puesto INTEGER,
+    id_feria INTEGER,
+	estado_puesto CHARACTER VARYING(20),
+    nombre_feria CHARACTER VARYING(50),
+    num_puesto INTEGER
+) AS $$
+    BEGIN
+        RETURN QUERY
+     
+ SELECT 
+        p.id_puesto ,
+        p.id_feria ,
+        ap.estado,
+        f.nombre,
+        p.numero
+
+        FROM 
+        public.feria  f 
+        JOIN 
+        public.puesto p ON f.id_feria = p.id_feria
+        JOIN estado_puesto ap ON p.id_estado_puesto = ap.id_estado_puesto
+        WHERE
+        f.id_feria = id_de_feria
+        ORDER BY p.numero;
+    END;
+   $$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION traer_semana_actividad_feria(func_id_feria INTEGER)
+RETURNS TABLE (
+    var_id_puesto INTEGER,
+    var_id_feria INTEGER,
+	var_estado_puesto CHARACTER VARYING(20),
+    var_nombre_feria CHARACTER VARYING(50),
+    var_num_puesto INTEGER,
+    var_num_horario INTEGER,
+    var_hora_inicio TIME WITHOUT TIME ZONE,
+    var_hora_termino TIME WITHOUT TIME ZONE,
+    var_precio INTEGER
+
+) AS $$
+    BEGIN
+        RETURN QUERY
+     
+ SELECT 
+        p.id_puesto ,
+        p.id_feria ,
+        ap.estado,
+        f.nombre,
+        p.numero,
+        hp.num_horario ,
+        hp.hora_inicio,
+        hp.hora_termino,
+        hp.precio
+
+        FROM 
+        public.feria  f 
+        JOIN 
+        public.puesto p ON f.id_feria = p.id_feria
+        RIGHT JOIN
+        public.horario_puesto  hp ON p.id_puesto = hp.id_puesto
+        JOIN estado_puesto ap ON p.id_estado_puesto = ap.id_estado_puesto
+        WHERE
+        f.id_feria = func_id_feria
+        ORDER BY p.numero,num_horario;
+    END;
+   $$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION contar_puestos_actuales(id_feria_param INT)
+RETURNS INT AS $$
+DECLARE
+    puestos_actuales INT;
+BEGIN
+    SELECT COUNT(*) INTO puestos_actuales
+    FROM puesto
+    WHERE puesto.id_feria = id_feria_param;
+    
+    RETURN puestos_actuales;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION obtener_ferias_paginado(
+    p_limit INTEGER,
+    p_offset INTEGER,
+    p_region INTEGER DEFAULT NULL,
+    p_comuna INTEGER DEFAULT NULL
+)
+RETURNS TABLE (
+    id_feria INTEGER,
+    nombre_feria CHARACTER VARYING(80),
+    comuna CHARACTER VARYING(80),
+    region CHARACTER VARYING(50)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        f.id_feria, 
+        f.nombre AS nombre_feria, 
+        c.comuna, 
+        g.region AS region
+    FROM 
+        public.feria AS f 
+    JOIN 
+        COMUNA c ON f.id_comuna = c.id_comuna 
+    JOIN 
+        REGION g ON c.id_region = g.id_region
+    WHERE
+        -- Si p_region no es NULL, filtrar por región
+        (p_region IS NULL OR g.id_region = p_region)
+        -- Si p_comuna no es NULL, filtrar por comuna
+        AND (p_comuna IS NULL OR c.id_comuna = p_comuna)
+    LIMIT p_limit
+    OFFSET p_offset;
+
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+
+CREATE OR REPLACE FUNCTION obtener_actividades_feria(
+   ids_horario INTEGER[]
+)
+RETURNS TABLE (
+    id_feria INTEGER,
+    id_actividad_feria INTEGER,
+    id_horario_feria INTEGER,
+    fecha DATE ,
+	armado_hecho boolean,
+	feria_hecha boolean
+    
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+	dpf.id_feria,
+	af.id_actividad_feria,
+	af.id_horario_feria,
+	af.fecha,
+	af.armado_hecho,
+	af.feria_hecha
+	FROM detalle_programa_feria dpf
+	JOIN actividad_feria af ON af.id_horario_feria = dpf.id_horario_feria
+	WHERE dpf.id_feria = ANY(ids_horario);
+  
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+CREATE OR REPLACE FUNCTION obtener_puestos_actividad(func_nombre_f CHARACTER VARYING , func_fecha DATE )
+RETURNS TABLE (
+id_feria INTEGER,
+nombre_feria CHARACTER VARYING,
+id_actividad_feria INTEGER,
+id_dia INTEGER,
+fecha DATE,
+id_puesto INTEGER,
+hora_inicio TIME WITHOUT TIME ZONE,
+hora_termino TIME WITHOUT TIME ZONE,
+id_arriendo_puesto INTEGER,
+id_estado_arriendo INTEGER,
+numero INTEGER,
+precio INTEGER
+
+) AS $$
+
+BEGIN
+RETURN QUERY
+SELECT
+f.id_feria,
+f.nombre as nombre_feria,
+af.id_actividad_feria,
+dpf.id_dia,
+af.fecha,
+ap.id_puesto,
+dpf.hora_inicio,
+dpf.hora_termino,
+ap.id_arriendo_puesto,
+ap.id_estado_arriendo,
+p.numero,
+p.precio
+
+from feria f
+
+JOIN detalle_programa_feria dpf ON f.id_feria = dpf.id_feria
+JOIN actividad_feria af ON af.id_horario_feria = dpf.id_horario_feria
+JOIN arriendo_puesto ap ON ap.id_actividad_feria = af.id_actividad_feria
+JOIN puesto p ON ap.id_puesto = p.id_puesto 
+WHERE f.nombre = func_nombre_f and af.fecha = func_fecha
+order by ap.id_puesto;
+
+END;
+$$ LANGUAGE plpgsql; 
+
+--FIN FUNCIONES FEED DE FERIASSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+
+-- Función para insertar una actividad de feria y retornar el id generado
+DROP FUNCTION IF EXISTS insertar_arriendo_puesto(INTEGER , INTEGER, DATE);
+DROP FUNCTION IF EXISTS insertar_actividad_feria_dia(INTEGER ,DATE);
+DROP PROCEDURE IF EXISTS insertar_actividad_feria(INTEGER);
+
+CREATE OR REPLACE FUNCTION insertar_actividad_feria_dia(func_id_horario_feria INTEGER, func_fecha DATE)
+RETURNS INTEGER LANGUAGE plpgsql AS $$
+DECLARE
+    var_id_actividad_feria INTEGER;
+BEGIN
+    INSERT INTO actividad_feria (id_horario_feria, fecha)
+    VALUES (func_id_horario_feria, func_fecha)
+    RETURNING id_actividad_feria INTO var_id_actividad_feria;
+    -- Retornar el id de la actividad insertada
+    RETURN var_id_actividad_feria;
+END;
+$$;
+
+-- Función para insertar los puestos para una actividad de feria
+CREATE OR REPLACE FUNCTION insertar_arriendo_puesto(func_id_actividad_feria INTEGER, func_id_feria INTEGER)
+RETURNS VOID LANGUAGE plpgsql AS $$
+DECLARE
+    var_id_puesto INTEGER;
+BEGIN
+    -- Insertar puestos asociados con la feria
+    FOR var_id_puesto IN
+        SELECT id_puesto 
+        FROM puesto
+        WHERE id_feria = func_id_feria AND id_estado_puesto = 1
+    LOOP
+        INSERT INTO arriendo_puesto (id_actividad_feria, id_puesto)
+        VALUES (func_id_actividad_feria, var_id_puesto);
+    END LOOP;
+END;
+$$;
+
+
+
+-- Procedimiento principal
+CREATE OR REPLACE PROCEDURE insertar_actividad_feria(p_id_feria INTEGER)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    var_fecha_actual DATE := CURRENT_DATE;
+    var_fecha_inicio_semana DATE;
+    var_fecha_insertar DATE;
+    var_id_dia INTEGER;
+    var_id_horario_feria INTEGER;
+    var_id_actividad_feria INTEGER; -- Para almacenar el id generado en la función
+BEGIN
+    -- Obtenemos la fecha del inicio de la semana (lunes) para la fecha actual
+    var_fecha_inicio_semana := date_trunc('week', var_fecha_actual);
+
+    -- Recorremos los días activos de la feria
+    FOR var_id_dia ,var_id_horario_feria IN
+        SELECT dtv.id_dia, dtv.id_horario_feria
+        FROM detalle_programa_feria dtv
+        WHERE dtv.id_feria = p_id_feria AND dtv.activo = true
+    LOOP
+        -- Calculamos la fecha para el día de la semana
+        var_fecha_insertar := var_fecha_inicio_semana + (var_id_dia - 1);
+
+        -- Llamamos a la función para insertar la actividad de feria
+        var_id_actividad_feria := insertar_actividad_feria_dia(var_id_horario_feria, var_fecha_insertar);
+
+        -- Llamamos a la función para insertar los puestos para esa actividad
+        PERFORM insertar_arriendo_puesto(var_id_actividad_feria, p_id_feria);
+
+    END LOOP;
+END;
+$$;
+
+                         
+
+
+
+CREATE OR REPLACE PROCEDURE insertar_all_actividad_feria()
+LANGUAGE plpgsql
+AS $$                 
+DECLARE
+    var_fecha_actual DATE := CURRENT_DATE;
+    var_fecha_inicio_semana DATE;
+    var_fecha_insertar DATE;
+    var_id_dia INTEGER;
+    var_id_horario_feria INTEGER;
+    var_id_actividad_feria INTEGER; -- Para almacenar el id generado en la función
+    var_id_feria INTEGER; -- Para almacenar cada id_feria
+BEGIN
+    -- Obtenemos la fecha del inicio de la semana (lunes) para la fecha actual
+    var_fecha_inicio_semana := date_trunc('week', var_fecha_actual);
+
+    -- Recorremos todas las ferias activas
+    FOR var_id_feria IN
+        SELECT id_feria
+        FROM feria
+       
+    LOOP
+        -- Recorremos los días activos de la feria actual
+        FOR var_id_dia, var_id_horario_feria IN
+            SELECT dtv.id_dia, dtv.id_horario_feria
+            FROM detalle_programa_feria dtv
+            WHERE dtv.id_feria = var_id_feria AND dtv.activo = true
+        LOOP
+            -- Calculamos la fecha para el día de la semana
+            var_fecha_insertar := var_fecha_inicio_semana + (var_id_dia - 1);
+
+            -- Llamamos a la función para insertar la actividad de feria
+            var_id_actividad_feria := insertar_actividad_feria_dia(var_id_horario_feria, var_fecha_insertar);
+
+            -- Llamamos a la función para insertar los puestos para esa actividad
+            PERFORM insertar_arriendo_puesto(var_id_actividad_feria, var_id_feria);
+        END LOOP;
+    END LOOP;
+END;
+$$;
+
+----
+
+DROP FUNCTION IF EXISTS insert_detalle_programa_trigger CASCADE;
+
+CREATE OR REPLACE FUNCTION insert_detalle_programa_trigger()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Insertar los detalles del programa para cada día de la semana con id_dia_armado = 1
+    INSERT INTO detalle_programa_feria (
+        id_feria, id_dia, hora_inicio, hora_termino, 
+        id_dia_armado, hora_inicio_armado, hora_termino_armado, activo
+    )
+    VALUES 
+        (NEW.id_feria, 1, '00:00', '00:00', 1, '00:00', '00:00', false),
+        (NEW.id_feria, 2, '00:00', '00:00', 1, '00:00', '00:00', false),
+        (NEW.id_feria, 3, '00:00', '00:00', 1, '00:00', '00:00', false),
+        (NEW.id_feria, 4, '00:00', '00:00', 1, '00:00', '00:00', false),
+        (NEW.id_feria, 5, '00:00', '00:00', 1, '00:00', '00:00', false),
+        (NEW.id_feria, 6, '00:00', '00:00', 1, '00:00', '00:00', false),
+        (NEW.id_feria, 7, '00:00', '00:00', 1, '00:00', '00:00', false);
+
+    -- Insertar una nueva entrada en la tabla plano con valores predeterminados para width y height
+    INSERT INTO plano (id_feria, width, height)
+    VALUES (NEW.id_feria, 500, 500);  -- Puedes ajustar los valores de width y height según sea necesario
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Creación del trigger en la tabla feria
+CREATE TRIGGER after_feria_insert
+AFTER INSERT ON feria
+FOR EACH ROW
+EXECUTE FUNCTION insert_detalle_programa_trigger();
+------
+-- tipo usuario
+
+INSERT INTO tipo_usuario (id_tipo_usuario, detalle)
+VALUES (1, 'encargado');
+
+INSERT INTO tipo_usuario (id_tipo_usuario, detalle)
+VALUES (2, 'feriante');
+
+INSERT INTO tipo_usuario (id_tipo_usuario, detalle)
+VALUES (3, 'municipal');
+
+
+-- tipo pago
+
+INSERT INTO tipo_pago (id_tipo_pago, detalle)
+VALUES (1, 'debito');
+
+INSERT INTO tipo_pago (id_tipo_pago, detalle)
+VALUES (2, 'credito');
+
+INSERT INTO tipo_pago (id_tipo_pago, detalle)
+VALUES (3, 'efectivo');
+
+
+-- estado_contrato
+
+INSERT INTO estado_contrato (id_estado_contrato, detalle)
+VALUES (1, 'en curso');
+
+INSERT INTO estado_contrato (id_estado_contrato, detalle)
+VALUES (2, 'finalizado');
+
+INSERT INTO estado_contrato (id_estado_contrato, detalle)
+VALUES (3, 'cancelado');
+
+INSERT INTO estado_contrato (id_estado_contrato, detalle)
+VALUES (4, 'Erroneo');
+
+--estado puesto
+
+INSERT INTO estado_puesto (id_estado_puesto,estado) 
+VALUES (1, 'Disponible');
+
+INSERT INTO estado_puesto (id_estado_puesto,estado) 
+VALUES (2, 'Ocupado');
+
+INSERT INTO estado_puesto (id_estado_puesto,estado) 
+VALUES (3, 'Mantenimiento');
+
+INSERT INTO estado_puesto (id_estado_puesto,estado) 
+VALUES (4, 'ELIMINADO');
+
+--tipo elemento
+INSERT INTO tipo_elemento (id_tipo_elemento, elemento)
+VALUES 
+(1, 'puesto'),
+(2,'calle');
+
+--tipo puesto
+
+INSERT INTO tipo_puesto (id_tipo_puesto, detalle)
+VALUES (1, 'dia');
+
+INSERT INTO tipo_puesto (id_tipo_puesto, detalle)
+VALUES (2, 'plazo');
+
+INSERT INTO tipo_puesto (id_tipo_puesto, detalle)
+VALUES (3, 'contacto');
+
+
+
+-- USUARIOS POR DEFECTO 1 ENCARGADO 2 FERIANTE 3 municipal
+
+INSERT INTO encargado_feria (user_mail, id_tipo_usuario, nombre, apellido, rut, rut_div, telefono, contrasena, url_foto_perfil) 
+VALUES 
+  ('1@11.com', 1, 'Roberto', 'Sánchez', 123223, 1, 123434, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@12.com', 1, 'Laura', 'Jiménez', 123224, 1, 123435, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@13.com', 1, 'Diego', 'Castro', 123225, 1, 123436, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@14.com', 1, 'Paula', 'Romero', 123226, 1, 123437, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@15.com', 1, 'Luis', 'Gutiérrez', 123227, 1, 123438, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@16.com', 1, 'Elena', 'Ortega', 123228, 1, 123439, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@17.com', 1, 'Francisco', 'Ruiz', 123229, 1, 123440, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@18.com', 1, 'Claudia', 'Molina', 123230, 1, 123441, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@19.com', 1, 'Andrés', 'Silva', 123231, 1, 123442, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null),
+  ('1@191.com', 1, 'Carmen', 'Lara', 123232, 1, 123443, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', null);
+
+INSERT INTO feriante (user_mail, id_tipo_usuario, nombre, apellido, rut, rut_div, biografia, telefono, auth_google, contrasena, perfil_privado, url_foto_perfil) 
+VALUES 
+  ('2@21.com', 2, 'Carlos', 'Gómez', 123223, 1, 'biografía vacía', 123434, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@22.com', 2, 'Lucía', 'Martínez', 123224, 1, 'biografía vacía', 123435, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@23.com', 2, 'José', 'Hernández', 123225, 1, 'biografía vacía', 123436, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@24.com', 2, 'Ana', 'López', 123226, 1, 'biografía vacía', 123437, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@25.com', 2, 'María', 'García', 123227, 1, 'biografía vacía', 123438, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@26.com', 2, 'Juan', 'Fernández', 123228, 1, 'biografía vacía', 123439, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@27.com', 2, 'Sofía', 'Pérez', 123229, 1, 'biografía vacía', 123440, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@28.com', 2, 'Miguel', 'Ramírez', 123230, 1, 'biografía vacía', 123441, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@29.com', 2, 'Laura', 'Torres', 123231, 1, 'biografía vacía', 123442, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null),
+  ('2@291.com', 2, 'Daniel', 'Ruiz', 123232, 1, 'biografía vacía', 123443, null, '$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm', false, null);
+
+INSERT INTO administrador_municipal (user_mail, id_tipo_usuario , nombre, apellido,rut,rut_div,telefono, contrasena,url_foto_perfil)
+VALUES ('3@3.com', 3, 'municipal' ,'te', 123222, 1,123433,'$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm',null);
+
+INSERT INTO administrador_municipal (user_mail, id_tipo_usuario , nombre, apellido,rut,rut_div,telefono, contrasena,url_foto_perfil)
+VALUES ('3@31.com', 3, 'municipal' ,'te', 123222, 1,123433,'$2b$10$PwTkJCXeUmpAb2E2iLhfHOKy.uYbQtRwAZHojsSrNNSWXMNnmXRwm',null);
+
+
+-- regiones
+
+INSERT INTO region (id_region, region) VALUES (1, 'Arica y Parinacota');
+INSERT INTO region (id_region, region) VALUES (2, 'Tarapaca');
+INSERT INTO region (id_region, region) VALUES (3, 'Antofagasta');
+INSERT INTO region (id_region, region) VALUES (4, 'Atacama');
+INSERT INTO region (id_region, region) VALUES (5, 'Coquimbo');
+INSERT INTO region (id_region, region) VALUES (6, 'Valparaiso');
+INSERT INTO region (id_region, region) VALUES (7, 'Metropolitana de Santiago');
+INSERT INTO region (id_region, region) VALUES (8, 'O Higgins');
+INSERT INTO region (id_region, region) VALUES (9, 'Maule');
+INSERT INTO region (id_region, region) VALUES (10, 'Nuble');
+INSERT INTO region (id_region, region) VALUES (11, 'Biobio');
+INSERT INTO region (id_region, region) VALUES (12, 'La Araucania');
+INSERT INTO region (id_region, region) VALUES (13, 'Los Rios');
+INSERT INTO region (id_region, region) VALUES (14, 'Los Lagos');
+INSERT INTO region (id_region, region) VALUES (15, 'Aysen');
+INSERT INTO region (id_region, region) VALUES (16, 'Magallanes');
+
+
+-- comunas
+
+
+-- Primera Región (Arica y Parinacota)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (1, 'Arica', 1);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (2, 'Camarones', 1);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (3, 'Putre', 1);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (4, 'Parinacota', 1);
+
+-- Segunda Región (Tarapacá)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (5, 'Huara', 2);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (6, 'Camiña', 2);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (7, 'Colchane', 2);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (8, 'Pica', 2);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (9, 'Pozo', 2);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (10, 'Almonte', 2);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (11, 'Alto Hospicio', 2);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (12, 'Iquique', 2);
+
+-- Tercera Región (Antofagasta)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (13, 'Antofagasta', 3);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (14, 'Calama', 3);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (15, 'Tocopilla', 3);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (16, 'Mejillones', 3);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (17, 'San Pedro de Atacama', 3);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (18, 'Sierra Gorda', 3);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (19, 'Antofagasta', 3);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (20, 'El Loa', 3);
+
+-- Cuarta Región (Atacama)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (21, 'Copiapó', 4);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (22, 'Caldera', 4);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (23, 'Tierra Amarilla', 4);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (24, 'Chañaral', 4);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (25, 'Diego de Almagro', 4);
+
+-- Quinta Región (Coquimbo)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (26, 'La Serena', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (27, 'Coquimbo', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (28, 'Vicuña', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (29, 'Andacollo', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (30, 'Paiguano', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (31, 'La Higuera', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (32, 'Combarbalá', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (33, 'Monte Patria', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (34, 'Ovalle', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (35, 'Punitaqui', 5);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (36, 'Río Hurtado', 5);
+
+-- Sexta Región (Valparaíso)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (37, 'Valparaíso', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (38, 'Viña del Mar', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (39, 'Concón', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (40, 'Quintero', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (41, 'Puchuncaví', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (42, 'Casablanca', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (43, 'Los Andes', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (44, 'San Esteban', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (45, 'Llay Llay', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (46, 'Zapallar', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (47, 'Puchuncaví', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (48, 'Quillota', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (49, 'Limache', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (50, 'Olmué', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (51, 'San Antonio', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (52, 'El Quisco', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (53, 'La Ligua', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (54, 'Petorca', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (55, 'San Felipe', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (56, 'Los Andes', 6);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (57, 'Rinconada', 6);
+
+-- Séptima Región (Metropolitana de Santiago)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (58, 'Santiago', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (59, 'Pudahuel', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (60, 'Maipú', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (61, 'La Florida', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (62, 'Las Condes', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (63, 'Vitacura', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (64, 'Ñuñoa', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (65, 'Recoleta', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (66, 'Independencia', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (67, 'El Bosque', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (68, 'Cerro Navia', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (69, 'Estación Central', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (70, 'Lo Prado', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (71, 'San Miguel', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (72, 'San Joaquín', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (73, 'La Granja', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (74, 'El Bosque', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (75, 'San Ramón', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (76, 'Lo Barnechea', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (77, 'Pedro Aguirre Cerda', 7);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (78, 'Cerro Navia', 7);
+
+-- Octava Región (O'Higgins)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (79, 'Rancagua', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (80, 'Machalí', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (81, 'Coinco', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (82, 'San Vicente', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (83, 'Pichidegua', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (84, 'Requínoa', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (85, 'Graneros', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (86, 'Mostazal', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (87, 'Cunco', 8);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (88, 'Olivar', 8);
+
+-- Novena Región (Maule)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (89, 'Talca', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (90, 'Maule', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (91, 'Linares', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (92, 'Cauquenes', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (93, 'Colbún', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (94, 'Retiro', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (95, 'San Javier', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (96, 'Villa Alegre', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (97, 'Yerbas Buenas', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (98, 'Pelarco', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (99, 'San Rafael', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (100, 'Longaví', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (101, 'Hualañé', 9);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (102, 'Sagrada Familia', 9);
+
+-- Décima Región (Ñuble)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (103, 'Chillán', 10);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (104, 'Chillán Viejo', 10);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (105, 'Bulnes', 10);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (106, 'El Carmen', 10);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (107, 'Pinto', 10);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (108, 'San Ignacio', 10);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (109, 'Yungay', 10);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (110, 'Quillón', 10);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (111, 'Coihueco', 10);
+
+-- Undécima Región (Biobío)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (112, 'Concepción', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (113, 'Talcahuano', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (114, 'Coronel', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (115, 'San Pedro de la Paz', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (116, 'Hualpén', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (117, 'Penco', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (118, 'Lota', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (119, 'Tome', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (120, 'Dichato', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (121, 'San Juan de la Costa', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (122, 'Santa Juana', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (123, 'Los Ángeles', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (124, 'Antuco', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (125, 'Cabrero', 11);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (126, 'Yumbel', 11);
+
+-- Duodécima Región (La Araucanía)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (127, 'Temuco', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (128, 'Pucón', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (129, 'Villarrica', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (130, 'Cunco', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (131, 'Lautaro', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (132, 'Freire', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (133, 'Cañete', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (134, 'Carahue', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (135, 'Nueva Imperial', 12);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (136, 'Temuco', 12);
+
+-- Decimotercera Región (Los Ríos)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (137, 'Valdivia', 13);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (138, 'Lanco', 13);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (139, 'Los Lagos', 13);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (140, 'Panguipulli', 13);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (141, 'La Unión', 13);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (142, 'Futrono', 13);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (143, 'Paillaco', 13);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (144, 'Río Bueno', 13);
+
+-- Decimocuarta Región (Los Lagos)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (145, 'Puerto Montt', 14);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (146, 'Puerto Varas', 14);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (147, 'Cochamó', 14);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (148, 'Fresia', 14);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (149, 'Frutillar', 14);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (150, 'Los Muermos', 14);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (151, 'Maullín', 14);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (152, 'Calbuco', 14);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (153, 'San Pablo', 14);
+
+-- Decimoquinta Región (Aysén)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (154, 'Coyhaique', 15);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (155, 'Aysén', 15);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (156, 'Cisnes', 15);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (157, 'Guaitecas', 15);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (158, 'Chile Chico', 15);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (159, 'Rio Ibañez', 15);
+
+-- Decimosexta Región (Magallanes)
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (160, 'Punta Arenas', 16);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (161, 'Natales', 16);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (162, 'Porvenir', 16);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (163, 'Cabo de Hornos', 16);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (164, 'Timaukel', 16);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (165, 'Laguna Blanca', 16);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (166, 'Río Verde', 16);
+INSERT INTO comuna (id_comuna, comuna, id_region) VALUES (167, 'Primavera', 16);
+
+-- ESTADO FERIA
+
+insert into estado_feria (id_estado,estado) VALUES
+(1,'No enviada'),
+(2,'En espera'),
+(3,'Rechazada'),
+(4,'Aceptada'),
+(5,'ELIMINADO');
+
+
+insert into estado_vacante (id_estado,estado) VALUES
+(1,'vacia'),
+(2,'llena'),
+(3,'ELIMINADA');
+
+insert into rol_empleado (id_rol, rol)
+	values(1,'supervisor');
+	
+insert into rol_empleado (id_rol, rol)
+	values(2,'ayudante');
+	
+
+INSERT INTO dia_semana (id_dia, dia) VALUES
+(1, 'Lunes'),
+(2, 'Martes'),
+(3, 'Miércoles'),
+(4, 'Jueves'),
+(5, 'Viernes'),
+(6, 'Sábado'),
+(7, 'Domingo');
+
+insert into dia_armado (id_dia_armado, cuando) VALUES
+(1, 'No Seleccionado'),
+(2, 'mismo dia'),
+(3, 'un dia antes'),
+(4, 'dejame elegir');
+
+insert into estado_postulacion VALUES
+(1,'En espera'),
+(2,'Aceptada'),
+(3,'Rechazada'),
+(4,'Cancelada');
+
+
+insert into estado_arriendo VALUES
+(1,'Disponible'),
+(2,'Confirmando compra'),
+(3,'ocupado');
+
+insert into estado_solicitud VALUES
+(1,'En espera'),
+(2,'Aceptada'),
+(3,'Rechazada'),
+(4,'Cancelada');
+
+
+-- FERIAS DE LOS ENCARGADOS 
+
+INSERT INTO feria (nombre, id_comuna, id_user_enf) VALUES 
+  ('Feria de Arica', 1, 3),
+  ('Feria del Sol', 2, 7),
+  ('Feria de los Andes', 3, 5),
+  ('Feria Camarones', 4, 2),
+  ('Feria Huara', 5, 9),
+  ('Feria de Camiña', 6, 1),
+  ('Feria Colchane', 7, 8),
+  ('Feria de Pica', 8, 6),
+  ('Feria Pozo Almonte', 9, 4),
+  ('Feria Alto Hospicio', 11, 10),
+  ('Feria Iquique', 12, 2),
+  ('Feria de Calama', 14, 1),
+  ('Feria de Tocopilla', 15, 3),
+  ('Feria Mejillones', 16, 4),
+  ('Feria San Pedro', 17, 8),
+  ('Feria Sierra Gorda', 18, 5),
+  ('Feria de Copiapó', 21, 7),
+  ('Feria de Caldera', 22, 10),
+  ('Feria Tierra Amarilla', 23, 6),
+  ('Feria de La Serena', 26, 9);
+
+
+-- vacantes de las ferias
+
+-- Vacantes para id_feria = 1
+INSERT INTO detalle_team_vacante (id_user_fte, id_feria, id_rol, ingreso, termino, id_estado_vacante) VALUES 
+  (null, 1, 1, '2024-11-06', '2025-06-30', 1),
+  (null, 1, 2, '2024-11-07', '2025-08-31', 2);
+
+-- Vacantes para id_feria = 2
+INSERT INTO detalle_team_vacante (id_user_fte, id_feria, id_rol, ingreso, termino, id_estado_vacante) VALUES 
+  (null, 2, 1, '2024-11-06', '2025-07-31', 1),
+  (null, 2, 2, '2024-11-08', '2025-09-30', 1),
+  (null, 2, 1, '2024-11-09', '2025-10-31', 2);
+
+-- Vacantes para id_feria = 3
+INSERT INTO detalle_team_vacante (id_user_fte, id_feria, id_rol, ingreso, termino, id_estado_vacante) VALUES 
+  (null, 3, 2, '2024-11-06', '2025-07-15', 1);
+
+-- Vacantes para id_feria = 4
+INSERT INTO detalle_team_vacante (id_user_fte, id_feria, id_rol, ingreso, termino, id_estado_vacante) VALUES 
+  (null, 4, 1, '2024-11-06', '2025-06-30', 2),
+  (null, 4, 2, '2024-11-07', '2025-09-15', 1),
+  (null, 4, 1, '2024-11-06', '2025-11-01', 2);
+
+-- Vacantes para id_feria = 5
+-- Sin vacantes
+
+-- Vacantes para id_feria = 6
+INSERT INTO detalle_team_vacante (id_user_fte, id_feria, id_rol, ingreso, termino, id_estado_vacante) VALUES 
+  (null, 6, 1, '2024-11-06', '2025-10-01', 1),
+  (null, 6, 2, '2024-11-07', '2025-09-01', 2);
+
+-- Vacantes para id_feria = 7
+INSERT INTO detalle_team_vacante (id_user_fte, id_feria, id_rol, ingreso, termino, id_estado_vacante) VALUES 
+  (null, 7, 2, '2024-11-06', '2025-08-30', 1),
+  (null, 7, 1, '2024-11-08', '2025-12-31', 2);
+
+-- Vacantes para id_feria = 8
+-- Sin vacantes
+
+-- Vacantes para id_feria = 9
+INSERT INTO detalle_team_vacante (id_user_fte, id_feria, id_rol, ingreso, termino, id_estado_vacante) VALUES 
+  (null, 9, 2, '2024-11-06', '2025-08-31', 1);
+
+-- Vacantes para id_feria = 10
+INSERT INTO detalle_team_vacante (id_user_fte, id_feria, id_rol, ingreso, termino, id_estado_vacante) VALUES 
+  (null, 10, 1, '2024-11-06', '2025-07-15', 1);
+
+--horarios para las vacantes
+
+-- Horarios para vacantes de id_feria = 1
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (1, 1, '09:00', '18:00'), -- Lunes
+  (1, 3, '09:00', '18:00'), -- Miércoles
+  (1, 5, '09:00', '18:00'); -- Viernes
+
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (2, 2, '10:00', '19:00'), -- Martes
+  (2, 4, '10:00', '19:00'); -- Jueves
+
+-- Horarios para vacantes de id_feria = 2
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (3, 1, '08:00', '17:00'), -- Lunes
+  (3, 3, '08:00', '17:00'); -- Miércoles
+
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (4, 5, '09:00', '18:00'); -- Viernes
+
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (5, 2, '09:00', '18:00'), -- Martes
+  (5, 4, '09:00', '18:00'); -- Jueves
+
+-- Horarios para vacantes de id_feria = 3
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (6, 1, '08:30', '17:30'), -- Lunes
+  (6, 4, '08:30', '17:30'); -- Jueves
+
+-- Horarios para vacantes de id_feria = 4
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (7, 2, '10:00', '19:00'), -- Martes
+  (7, 3, '10:00', '19:00'); -- Miércoles
+
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (8, 5, '09:00', '18:00'); -- Viernes
+
+-- Horarios para vacantes de id_feria = 6
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (9, 1, '09:00', '18:00'), -- Lunes
+  (9, 5, '09:00', '18:00'); -- Viernes
+
+-- Horarios para vacantes de id_feria = 7
+INSERT INTO detalle_horario_empleado (id_vacante, id_dia, hora_entrada, hora_salida) VALUES 
+  (10, 2, '10:00', '19:00'), -- Martes
+  (10, 4, '10:00', '19:00'); -- Jueves
+
+
+-- Insertar postulaciones para las vacantes con múltiples postulantes por vacante
+
+INSERT INTO postulaciones (id_vacante, id_user_fte) VALUES 
+  (1, 1), (1, 2), (1, 3), -- Vacante 1, Usuarios 1, 2, 3
+  (2, 4), (2, 5), -- Vacante 2, Usuarios 4, 5
+  (3, 6), (3, 7), (3, 8), -- Vacante 3, Usuarios 6, 7, 8
+  (4, 9), (4, 10), -- Vacante 4, Usuarios 9, 10
+  (5, 1), (5, 3), -- Vacante 5, Usuarios 1, 3
+  (6, 2), (6, 5), (6, 7), -- Vacante 6, Usuarios 2, 5, 7
+  (7, 4), (7, 6), -- Vacante 7, Usuarios 4, 6
+  (8, 8), (8, 9), (8, 10), -- Vacante 8, Usuarios 8, 9, 10
+  (9, 2), (9, 4), -- Vacante 9, Usuarios 2, 4
+  (10, 1), (10, 5); -- Vacante 10, Usuarios 1, 5
+
+
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 08:00:00', hora_termino = '2024-11-07 14:00:00', activo = true
+WHERE id_horario_feria = 12;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 10:00:00', hora_termino = '2024-11-07 16:00:00', activo = true
+WHERE id_horario_feria = 35;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 08:30:00', hora_termino = '2024-11-07 14:30:00', activo = true
+WHERE id_horario_feria = 56;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 09:00:00', hora_termino = '2024-11-07 15:00:00', activo = true
+WHERE id_horario_feria = 87;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 07:30:00', hora_termino = '2024-11-07 13:30:00', activo = true
+WHERE id_horario_feria = 104;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 11:00:00', hora_termino = '2024-11-07 17:00:00', activo = true
+WHERE id_horario_feria = 67;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 10:30:00', hora_termino = '2024-11-07 16:30:00', activo = true
+WHERE id_horario_feria = 101;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 08:00:00', hora_termino = '2024-11-07 14:00:00', activo = true
+WHERE id_horario_feria = 29;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 09:30:00', hora_termino = '2024-11-07 15:30:00', activo = true
+WHERE id_horario_feria = 78;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 07:00:00', hora_termino = '2024-11-07 13:00:00', activo = true
+WHERE id_horario_feria = 120;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 10:00:00', hora_termino = '2024-11-07 16:00:00', activo = true
+WHERE id_horario_feria = 36;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 08:45:00', hora_termino = '2024-11-07 14:45:00', activo = true
+WHERE id_horario_feria = 99;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 11:30:00', hora_termino = '2024-11-07 17:30:00', activo = true
+WHERE id_horario_feria = 41;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 12:00:00', hora_termino = '2024-11-07 18:00:00', activo = true
+WHERE id_horario_feria = 58;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 09:00:00', hora_termino = '2024-11-07 15:00:00', activo = true
+WHERE id_horario_feria = 124;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 07:30:00', hora_termino = '2024-11-07 13:30:00', activo = true
+WHERE id_horario_feria = 111;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 08:15:00', hora_termino = '2024-11-07 14:15:00', activo = true
+WHERE id_horario_feria = 82;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 10:30:00', hora_termino = '2024-11-07 16:30:00', activo = true
+WHERE id_horario_feria = 133;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 12:15:00', hora_termino = '2024-11-07 18:15:00', activo = true
+WHERE id_horario_feria = 15;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 09:45:00', hora_termino = '2024-11-07 15:45:00', activo = true
+WHERE id_horario_feria = 45;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 08:30:00', hora_termino = '2024-11-07 14:30:00', activo = true
+WHERE id_horario_feria = 122;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 10:00:00', hora_termino = '2024-11-07 16:00:00', activo = true
+WHERE id_horario_feria = 73;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 07:45:00', hora_termino = '2024-11-07 13:45:00', activo = true
+WHERE id_horario_feria = 114;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 11:15:00', hora_termino = '2024-11-07 17:15:00', activo = true
+WHERE id_horario_feria = 140;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 12:00:00', hora_termino = '2024-11-07 18:00:00', activo = true
+WHERE id_horario_feria = 60;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 08:00:00', hora_termino = '2024-11-07 14:00:00', activo = true
+WHERE id_horario_feria = 29;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 09:30:00', hora_termino = '2024-11-07 15:30:00', activo = true
+WHERE id_horario_feria = 64;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 07:00:00', hora_termino = '2024-11-07 13:00:00', activo = true
+WHERE id_horario_feria = 81;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 10:15:00', hora_termino = '2024-11-07 16:15:00', activo = true
+WHERE id_horario_feria = 127;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 08:45:00', hora_termino = '2024-11-07 14:45:00', activo = true
+WHERE id_horario_feria = 49;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 07:30:00', hora_termino = '2024-11-07 13:30:00', activo = true
+WHERE id_horario_feria = 100;
+
+UPDATE detalle_programa_feria
+SET hora_inicio = '2024-11-07 09:15:00', hora_termino = '2024-11-07 15:15:00', activo = true
+WHERE id_horario_feria = 93;
+
+
+-- tipos de redes sociales
+
+INSERT INTO tipo_red (id_tipo_red, red_social, url_foto_red) VALUES 
+(1, 'Facebook', 'https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg'),
+(2, 'Instagram', 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png'),
+(3, 'Twitter', 'https://upload.wikimedia.org/wikipedia/en/6/60/Twitter_Logo_as_of_2021.svg'),
+(4, 'LinkedIn', 'https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg'),
+(5, 'TikTok', 'https://upload.wikimedia.org/wikipedia/en/6/69/TikTok_logo.svg');
+
